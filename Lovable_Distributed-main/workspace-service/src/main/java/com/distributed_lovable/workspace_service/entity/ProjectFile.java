@@ -1,0 +1,41 @@
+package com.distributed_lovable.workspace_service.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.Instant;
+
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Getter
+@Setter
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Table(name = "project_files")
+public class ProjectFile {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id",nullable = false)
+    Project project;
+
+    @Column(nullable = false)
+    String path; //tells path of files in the project
+
+    String minioObjectKey; // store content in minio object so we dont store whole object ourself
+
+    @CreationTimestamp
+    Instant createdAt;          // Instant is same as LocalDateTime with some extra functionality
+
+    @UpdateTimestamp
+    Instant updatedAt;
+
+
+}
