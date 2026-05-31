@@ -17,6 +17,7 @@ import { RuntimeErrorAlert, RuntimeError } from "@/components/RuntimeErrorAlert"
 import { generateGradient, cn } from "@/lib/utils";
 import { ProjectResponse } from "@/lib/types";
 import { ShareDialog } from "@/components/ShareDialog";
+import { UpgradeDialog } from "@/components/UpgradeDialog";
 
 type ViewMode = "code" | "preview";
 
@@ -395,9 +396,13 @@ Please analyze this error and fix the code to resolve it.`;
           />
           {project?.role !== 'VIEWER' && (
             <>
-              <Button variant="outline" size="sm" className="h-8 text-xs">
-                Upgrade
-              </Button>
+              <UpgradeDialog
+                trigger={
+                  <Button variant="outline" size="sm" className="h-8 text-xs bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-orange-500 border-orange-500/20 hover:bg-orange-500/20 transition-all font-medium">
+                    Upgrade
+                  </Button>
+                }
+              />
               <Button size="sm" className="h-8 text-xs bg-primary hover:bg-primary/90">
                 Publish
               </Button>
@@ -437,7 +442,12 @@ Please analyze this error and fix the code to resolve it.`;
             <div className="h-full">
               <div className="h-full relative">
                 <div className={cn("h-full absolute inset-0", viewMode !== "code" && "hidden")}>
-                  <CodePanel projectId={projectId} updatedFiles={updatedFiles} />
+                  <CodePanel
+                    projectId={projectId}
+                    updatedFiles={updatedFiles}
+                    isStreaming={isStreaming}
+                    viewMode={viewMode}
+                  />
                 </div>
                 <div className={cn("h-full absolute inset-0", viewMode !== "preview" && "hidden")}>
                   <PreviewPanel

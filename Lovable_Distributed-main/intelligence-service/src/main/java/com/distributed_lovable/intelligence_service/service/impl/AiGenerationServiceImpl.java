@@ -26,6 +26,8 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.metadata.Usage;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
@@ -138,7 +140,8 @@ public class AiGenerationServiceImpl implements AiGenerationService {
 
         StringBuilder fullResponseBuffer=new StringBuilder();
 
-        CodeGenerationTools codeGenerationTools=new CodeGenerationTools(projectId,workspaceClient);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CodeGenerationTools codeGenerationTools=new CodeGenerationTools(projectId,workspaceClient,authentication);
 
         AtomicReference<Long> startTime=new AtomicReference<>(System.currentTimeMillis()); // To show the thinking for 5 sec etc ... as a response
         AtomicReference<Long> endTime =new AtomicReference<>(0L); // keeps end time in this thread only if new threads are present

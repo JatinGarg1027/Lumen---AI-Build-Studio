@@ -1,6 +1,7 @@
 package com.distributed_lovable.workspace_service.controller;
 
 import com.distributed_lovable.common_lib.dto.FileTreeDto;
+import com.distributed_lovable.common_lib.dto.FileNode;
 import com.distributed_lovable.workspace_service.service.ProjectFileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -75,6 +76,37 @@ public class FileController {
         }
         
         return ResponseEntity.ok(debug);
+    }
+
+    @GetMapping("/download-zip")
+    public void downloadZip(
+            @PathVariable Long projectId,
+            jakarta.servlet.http.HttpServletResponse response
+    ) throws java.io.IOException {
+        log.info("Downloading ZIP for project: {}", projectId);
+        response.setContentType("application/zip");
+        response.setHeader("Content-Disposition", "attachment; filename=\"project-" + projectId + ".zip\"");
+
+        try (java.util.zip.ZipOutputStream zos = new java.util.zip.ZipOutputStream(response.getOutputStream())) {
+            FileTreeDto fileTree = fileServiceObj.getFileTree(projectId);
+            if (fileTree != null && fileTree.files() != null) {
+                for (FileNode node : fileTree.files()) {
+                    String path = node.path();
+                    try {
+                        String content = fileServiceObj.getFileContent(projectId, path);
+                        java.util.zip.ZipEntry zipEntry = new java.util.zip.ZipEntry(path);
+                        zos.putNextEntry(zipEntry);
+                        zos.write(content.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+                        zos.closeEntry();
+                    } catch (Exception e) {
+                        log.error("Failed to add file {} to ZIP for project {}: {}", path, projectId, e.getMessage());
+                    }
+                }
+            }
+        } catch (Exception e) {
+            log.error("Error creating ZIP for project {}: {}", projectId, e.getMessage(), e);
+            throw e;
+        }
     }
 
 }

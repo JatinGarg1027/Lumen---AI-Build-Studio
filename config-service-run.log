@@ -1,0 +1,75 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.3)
+
+2026-05-31T11:32:54.881+05:30  INFO 26669 --- [config-service] [           main] c.d.c.ConfigServiceApplication           : Starting ConfigServiceApplication v0.0.1-SNAPSHOT using Java 21.0.11 with PID 26669 (/Users/jatingarg/Downloads/AI Project/Lovable_Distributed-main/config-service/target/config-service-0.0.1-SNAPSHOT.jar started by jatingarg in /Users/jatingarg/Downloads/AI Project/Lovable_Distributed-main/config-service)
+2026-05-31T11:32:54.882+05:30  INFO 26669 --- [config-service] [           main] c.d.c.ConfigServiceApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-05-31T11:32:55.310+05:30  INFO 26669 --- [config-service] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=226aa86d-19b0-3bcd-ba9d-0641285e64e8
+2026-05-31T11:32:55.404+05:30  INFO 26669 --- [config-service] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8888 (http)
+2026-05-31T11:32:55.409+05:30  INFO 26669 --- [config-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-31T11:32:55.409+05:30  INFO 26669 --- [config-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-05-31T11:32:55.420+05:30  INFO 26669 --- [config-service] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 519 ms
+2026-05-31T11:32:55.884+05:30  INFO 26669 --- [config-service] [           main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestClient.
+2026-05-31T11:32:55.907+05:30  WARN 26669 --- [config-service] [           main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-31T11:32:55.910+05:30  INFO 26669 --- [config-service] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-05-31T11:32:55.926+05:30  INFO 26669 --- [config-service] [           main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-05-31T11:32:55.937+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-05-31T11:32:55.939+05:30  INFO 26669 --- [config-service] [           main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T11:32:55.942+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-05-31T11:32:55.942+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-05-31T11:32:55.942+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-05-31T11:32:55.942+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-05-31T11:32:55.942+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-05-31T11:32:55.942+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-05-31T11:32:55.942+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-05-31T11:32:56.085+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-05-31T11:32:56.085+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-05-31T11:32:56.086+05:30  INFO 26669 --- [config-service] [           main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-05-31T11:32:56.086+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1780207376086 with initial instances count: 0
+2026-05-31T11:32:56.087+05:30  INFO 26669 --- [config-service] [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application CONFIG-SERVICE with eureka with status UP
+2026-05-31T11:32:56.087+05:30  INFO 26669 --- [config-service] [           main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1780207376087, current=UP, previous=STARTING]
+2026-05-31T11:32:56.088+05:30  INFO 26669 --- [config-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CONFIG-SERVICE/config-service:8888: registering service...
+2026-05-31T11:32:56.097+05:30  INFO 26669 --- [config-service] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8888 (http) with context path '/'
+2026-05-31T11:32:56.097+05:30  INFO 26669 --- [config-service] [           main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8888
+2026-05-31T11:32:56.104+05:30  INFO 26669 --- [config-service] [           main] c.d.c.ConfigServiceApplication           : Started ConfigServiceApplication in 1.418 seconds (process running for 1.644)
+2026-05-31T11:32:56.145+05:30  INFO 26669 --- [config-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CONFIG-SERVICE/config-service:8888 - registration status: 204
+2026-05-31T11:32:57.502+05:30  INFO 26669 --- [config-service] [nio-8888-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-31T11:32:57.502+05:30  INFO 26669 --- [config-service] [nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-31T11:32:57.503+05:30  INFO 26669 --- [config-service] [nio-8888-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-05-31T11:33:05.798+05:30  INFO 26669 --- [config-service] [nio-8888-exec-1] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/application.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:33:07.746+05:30  INFO 26669 --- [config-service] [nio-8888-exec-3] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/api-gateway.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/'
+2026-05-31T11:33:07.746+05:30  INFO 26669 --- [config-service] [nio-8888-exec-3] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/application.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:33:08.940+05:30  INFO 26669 --- [config-service] [nio-8888-exec-5] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/workspace-service.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:33:08.940+05:30  INFO 26669 --- [config-service] [nio-8888-exec-5] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/application.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:33:10.037+05:30  INFO 26669 --- [config-service] [nio-8888-exec-2] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/intelligence-service.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:33:10.037+05:30  INFO 26669 --- [config-service] [nio-8888-exec-2] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/application.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:33:11.185+05:30  INFO 26669 --- [config-service] [nio-8888-exec-4] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/account-service.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:33:11.185+05:30  INFO 26669 --- [config-service] [nio-8888-exec-4] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/application.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:33:26.093+05:30  INFO 26669 --- [config-service] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-05-31T11:33:26.096+05:30  INFO 26669 --- [config-service] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-05-31T11:33:26.096+05:30  INFO 26669 --- [config-service] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-05-31T11:33:26.096+05:30  INFO 26669 --- [config-service] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-05-31T11:33:26.096+05:30  INFO 26669 --- [config-service] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-05-31T11:33:26.096+05:30  INFO 26669 --- [config-service] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Application version is -1: false
+2026-05-31T11:33:26.096+05:30  INFO 26669 --- [config-service] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-05-31T11:33:26.135+05:30  INFO 26669 --- [config-service] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-05-31T11:37:55.949+05:30  INFO 26669 --- [config-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T11:42:55.959+05:30  INFO 26669 --- [config-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T11:47:55.959+05:30  INFO 26669 --- [config-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T11:48:47.805+05:30  INFO 26669 --- [config-service] [io-8888-exec-10] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/workspace-service.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:48:47.806+05:30  INFO 26669 --- [config-service] [io-8888-exec-10] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/application.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:49:14.801+05:30  INFO 26669 --- [config-service] [nio-8888-exec-3] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/workspace-service.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:49:14.801+05:30  INFO 26669 --- [config-service] [nio-8888-exec-3] o.s.c.c.s.e.NativeEnvironmentRepository  : Adding property source: Config resource 'file [/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/application.yml]' via location 'file:/var/folders/9x/cq_9wymx09vc2wnv3xp1mm700000gn/T/config-repo-14967633236601227420/' (document #0)
+2026-05-31T11:52:55.960+05:30  INFO 26669 --- [config-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T12:14:23.099+05:30  INFO 26669 --- [config-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T12:14:23.871+05:30  INFO 26669 --- [config-service] [beatExecutor-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CONFIG-SERVICE/config-service:8888 - Re-registering apps/CONFIG-SERVICE
+2026-05-31T12:14:23.871+05:30  INFO 26669 --- [config-service] [beatExecutor-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CONFIG-SERVICE/config-service:8888: registering service...
+2026-05-31T12:14:23.875+05:30  INFO 26669 --- [config-service] [beatExecutor-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CONFIG-SERVICE/config-service:8888 - registration status: 204
+2026-05-31T12:19:23.126+05:30  INFO 26669 --- [config-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T12:24:23.139+05:30  INFO 26669 --- [config-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration

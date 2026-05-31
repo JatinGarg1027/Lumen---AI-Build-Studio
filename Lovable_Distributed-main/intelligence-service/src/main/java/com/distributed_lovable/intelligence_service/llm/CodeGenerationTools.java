@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class CodeGenerationTools {
 
     private final Long projectId;
     private final WorkspaceClient workspaceClient;
+    private final Authentication authentication;
 
     // We create this tool so that llm could read the file content
     @Tool(name = "read_files",
@@ -23,19 +26,33 @@ public class CodeGenerationTools {
             @ToolParam(description = "List of relative paths (e.g., ['src/App.tsx'])")
             List<String> paths
     ){
+        if (authentication != null) {
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        }
+        try {
         List<String> result=new ArrayList<>();
         for(String path:paths)
         {
             String cleanPath=path.startsWith("/")?path.substring(1):path; // to remove the / if it starts with one
 
             log.info("Requested file:{}",cleanPath);
-            String content=workspaceClient.getFileContent(projectId,cleanPath);
-
-            result.add(String.format(
-                    "--- START OF FILE: %s ---\n%s\n--- END OF FILE ---",
-                    cleanPath,content
-            ));
+            try {
+                String content=workspaceClient.getFileContent(projectId,cleanPath);
+                result.add(String.format(
+                        "--- START OF FILE: %s ---\n%s\n--- END OF FILE ---",
+                        cleanPath,content
+                ));
+            } catch (Exception e) {
+                log.warn("Failed to read file: {}, error: {}", cleanPath, e.getMessage());
+                result.add(String.format(
+                        "--- FILE: %s ---\nError: File does not exist or could not be read.\n--- END OF FILE ---",
+                        cleanPath
+                ));
+            }
         }
         return result;
+        } finally {
+            SecurityContextHolder.clearContext();
+        }
     }
 }

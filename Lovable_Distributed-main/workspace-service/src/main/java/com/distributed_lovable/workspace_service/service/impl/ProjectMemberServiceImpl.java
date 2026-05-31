@@ -45,7 +45,21 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
 
         return projectMemberRepositoryObj.findByIdProjectId(projectId)
                         .stream()
-                        .map(projectMemberMapper::toProjectMemberResponseFromMember)
+                        .map(member -> {
+                            MemberResponse resp = projectMemberMapper.toProjectMemberResponseFromMember(member);
+                            try {
+                                UserDto user = accountClient.getUserById(member.getId().getUserId());
+                                return new MemberResponse(
+                                    resp.userId(),
+                                    user.username(),
+                                    user.name(),
+                                    resp.projectRole(),
+                                    resp.invitedAt()
+                                );
+                            } catch (Exception e) {
+                                return resp;
+                            }
+                        })
                         .toList();
 
 
@@ -84,7 +98,13 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
 
         projectMemberRepositoryObj.save(member);
 
-        return projectMemberMapper.toProjectMemberResponseFromMember(member);
+        return new MemberResponse(
+                invitee.id(),
+                invitee.username(),
+                invitee.name(),
+                member.getProjectRole(),
+                member.getInvitedAt()
+        );
 
 
     }
@@ -104,8 +124,18 @@ public class ProjectMemberServiceImpl implements ProjectMemberService {
 
         projectMemberRepositoryObj.save(projectMember); // Not needed as @Transactional will keep care of it but good practice to write it
 
-
-        return projectMemberMapper.toProjectMemberResponseFromMember(projectMember);
+        try {
+            UserDto user = accountClient.getUserById(memberId);
+            return new MemberResponse(
+                    memberId,
+                    user.username(),
+                    user.name(),
+                    projectMember.getProjectRole(),
+                    projectMember.getInvitedAt()
+            );
+        } catch (Exception e) {
+            return projectMemberMapper.toProjectMemberResponseFromMember(projectMember);
+        }
     }
 
     @Override

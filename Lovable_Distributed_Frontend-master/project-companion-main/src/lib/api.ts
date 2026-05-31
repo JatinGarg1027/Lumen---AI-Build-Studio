@@ -138,12 +138,10 @@ import { ChatMessage, DeployResponse, FileNode, LoginCredentials, LoginResponse,
       if (!response.ok) {
         const errorText = await response.text();
         const errorMsg = `HTTP ${response.status}: Failed to fetch files. ${errorText}`;
-        console.error("[api.getFiles]", errorMsg);
         throw new Error(errorMsg);
       }
 
       const data: FilesApiResponse = await response.json();
-      console.log("[api.getFiles] Successfully loaded files", data);
       return buildFileTree(data.files);
     },
 
@@ -155,16 +153,14 @@ import { ChatMessage, DeployResponse, FileNode, LoginCredentials, LoginResponse,
         }
       );
 
-      const data = await response.json();
-
       if (!response.ok) {
-        const errorMsg = `HTTP ${response.status}: Failed to fetch file content at ${path}. ${data.error || response.statusText}`;
-        console.error("[api.getFileContent]", errorMsg);
+        const errorText = await response.text();
+        const errorMsg = `HTTP ${response.status}: Failed to fetch file content at ${path}. ${errorText || response.statusText}`;
         throw new Error(errorMsg);
       }
 
-      console.log(`[api.getFileContent] Successfully loaded ${path} (${data.content?.length || 0} bytes)`);
-      return data.content;
+      const content = await response.text();
+      return content;
     },
 
     async deploy(projectId: string): Promise<DeployResponse> {
@@ -367,12 +363,19 @@ import { ChatMessage, DeployResponse, FileNode, LoginCredentials, LoginResponse,
                 const parsed = JSON.parse(dataStr);
                 const content = parsed.text;
 
-                // 1. Send clean text to UI
-                onChunk(content);
-
-                // 2. Accumulate for file parsing (Same as before)
-                fullContentBuffer += content;
-                // ... (rest of regex logic) ...
+                 // 1. Send clean text to UI
+                 onChunk(content);
+ 
+                 // 2. Accumulate for file parsing
+                 fullContentBuffer += content;
+                 
+                 const fileRegex = /<file\s+path="([^"]+)">([\s\S]*?)(?:<\/file>|$)/gi;
+                 let fileMatch;
+                 while ((fileMatch = fileRegex.exec(fullContentBuffer)) !== null) {
+                   const filePath = fileMatch[1];
+                   const fileContent = fileMatch[2];
+                   onFile(filePath, fileContent);
+                 }
 
               } catch (e) {
                 console.error("Failed to parse SSE JSON:", e);
@@ -390,6 +393,60 @@ import { ChatMessage, DeployResponse, FileNode, LoginCredentials, LoginResponse,
         });
 
       return () => controller.abort();
+    },
+
+    async getSubscription(): Promise<{
+      plan: {
+        id: number;
+        name: string;
+        maxProjects: number;
+        maxTokenPerDay: number;
+        unlimitedAi: boolean;
+        price: string;
+      } | null;
+      status: string;
+      currentPeriodEnd: string | null;
+      tokensUsedThisCycle: number;
+    }> {
+      const response = await fetch(`${BASE_URL}/api/v1/account/api/me/subscription`, {
+        headers: { ...getAuthHeaders() },
+      });
+      if (!response.ok) {
+        throw new Error("Failed to fetch subscription status");
+      }
+      return response.json();
+    },
+
+    async createCheckoutSession(planId: number): Promise<{ checkoutUrl: string }> {
+      const response = await fetch(`${BASE_URL}/api/v1/account/api/payment/checkout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...getAuthHeaders(),
+        },
+        body: JSON.stringify({ planId }),
+      });
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text || "Failed to initiate payment checkout");
+      }
+      return response.json();
+    },
+
+    async openCustomerPortal(): Promise<{ portalUrl: string }> {
+      const response = await fetch(`${BASE_URL}/api/v1/account/api/payment/portal`, {
+        method: "POST",
+        headers: {
+          ...getAuthHeaders(),
+        },
+      });
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text || "Failed to open billing customer portal");
+      }
+      return response.json();
     }
 
   };
+export type { FileNode };
+

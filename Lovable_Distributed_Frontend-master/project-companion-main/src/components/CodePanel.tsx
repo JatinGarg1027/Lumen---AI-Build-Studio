@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button";
 interface CodePanelProps {
   projectId: string;
   updatedFiles: Map<string, string>;
+  isStreaming?: boolean;
+  viewMode?: "code" | "preview";
 }
 
 // Helper to find a file by path in the tree
@@ -25,7 +27,7 @@ function findFileInTree(files: FileNode[], targetPath: string): boolean {
 const getTabsKey = (projectId: string) => `${OPEN_TABS_KEY}_${projectId}`;
 const getActiveTabKey = (projectId: string) => `${ACTIVE_TAB_KEY}_${projectId}`;
 
-export function CodePanel({ projectId, updatedFiles }: CodePanelProps) {
+export function CodePanel({ projectId, updatedFiles, isStreaming = false, viewMode = "preview" }: CodePanelProps) {
   const [files, setFiles] = useState<FileNode[]>([]);
   const [openTabs, setOpenTabs] = useState<string[]>([]);
   const [activeTab, setActiveTab] = useState<string | null>(null);
@@ -74,38 +76,84 @@ export function CodePanel({ projectId, updatedFiles }: CodePanelProps) {
 
   // Load file tree
   useEffect(() => {
-    const loadFiles = async () => {
-      setIsLoadingTree(true);
+    let active = true;
+    let timerId: NodeJS.Timeout | null = null;
+    let backupTimerId: NodeJS.Timeout | null = null;
+
+    const loadFiles = async (showLoading = true) => {
+      if (showLoading) {
+        setIsLoadingTree(true);
+      }
       setTreeError(null);
       try {
-        console.log(`[CodePanel] Loading files for project: ${projectId}`);
         const fileTree = await api.getFiles(projectId);
-        console.log(`[CodePanel] Loaded file tree:`, fileTree);
+        if (!active) return;
+        
         setFiles(fileTree);
         
-        // If no tabs are open, default to pages/Index.tsx
-        if (openTabs.length === 0) {
-          const defaultPaths = ["src/pages/Index.tsx", "pages/Index.tsx"];
+        // If no tabs are open, default to src/pages/Index.tsx or src/App.tsx or first file
+        if (openTabs.length === 0 && fileTree.length > 0) {
+          const defaultPaths = ["src/pages/Index.tsx", "pages/Index.tsx", "src/App.tsx", "src/main.tsx"];
+          let foundDefault = false;
           for (const defaultPath of defaultPaths) {
             if (findFileInTree(fileTree, defaultPath)) {
               setOpenTabs([defaultPath]);
               setActiveTab(defaultPath);
+              foundDefault = true;
               break;
+            }
+          }
+          if (!foundDefault) {
+            const findFirstFile = (nodes: FileNode[]): string | null => {
+              for (const node of nodes) {
+                if (node.type === "file") return node.path;
+                if (node.children) {
+                  const childPath = findFirstFile(node.children);
+                  if (childPath) return childPath;
+                }
+              }
+              return null;
+            };
+            const firstFile = findFirstFile(fileTree);
+            if (firstFile) {
+              setOpenTabs([firstFile]);
+              setActiveTab(firstFile);
             }
           }
         }
       } catch (error) {
+        if (!active) return;
         const errorMsg = error instanceof Error ? error.message : "Unknown error loading files";
-        console.error("[CodePanel] Failed to load files:", error);
         setTreeError(`Failed to load files: ${errorMsg}`);
         setFiles([]);
       } finally {
-        setIsLoadingTree(false);
+        if (active) {
+          setIsLoadingTree(false);
+        }
       }
     };
 
-    loadFiles();
-  }, [projectId]);
+    if (!isStreaming && viewMode === "code") {
+      // 1. Fetch immediately (without showing loading spinner if files already exist)
+      loadFiles(files.length === 0);
+      
+      // 2. Scheduled fetch at 1s to ensure Kafka async saves are stored
+      timerId = setTimeout(() => {
+        loadFiles(false);
+      }, 1000);
+
+      // 3. Backup scheduled fetch at 3s
+      backupTimerId = setTimeout(() => {
+        loadFiles(false);
+      }, 3000);
+    }
+
+    return () => {
+      active = false;
+      if (timerId) clearTimeout(timerId);
+      if (backupTimerId) clearTimeout(backupTimerId);
+    };
+  }, [projectId, isStreaming, viewMode, openTabs.length]);
 
   // Load file content when active tab changes
   useEffect(() => {
@@ -126,13 +174,10 @@ export function CodePanel({ projectId, updatedFiles }: CodePanelProps) {
       setIsLoadingFile(true);
       setFileError(null);
       try {
-        console.log(`[CodePanel] Loading file content: ${activeTab}`);
         const content = await api.getFileContent(projectId, activeTab);
-        console.log(`[CodePanel] Loaded file content for ${activeTab}`);
         setFileContent(content);
       } catch (error) {
         const errorMsg = error instanceof Error ? error.message : "Unknown error";
-        console.error(`[CodePanel] Failed to load file ${activeTab}:`, error);
         setFileError(`Failed to load file: ${errorMsg}`);
         setFileContent("// Error loading file");
       } finally {
@@ -224,7 +269,7 @@ export function CodePanel({ projectId, updatedFiles }: CodePanelProps) {
             </div>
           )}
           
-          {isLoadingTree && !treeError && (
+          {isLoadingTree && files.length === 0 && !treeError && (
             <div className="flex items-center justify-center h-20 text-muted-foreground text-sm">
               Loading files...
             </div>

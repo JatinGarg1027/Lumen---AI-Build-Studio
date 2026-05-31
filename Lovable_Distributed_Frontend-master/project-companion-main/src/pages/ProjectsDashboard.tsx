@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Plus, LogOut, Search, Folder, Loader2, MoreVertical, Trash, Download, Edit } from "lucide-react";
+import { Plus, LogOut, Search, Folder, Loader2, MoreVertical, Trash, Download, Edit, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,6 +11,7 @@ import { ProjectSummaryResponse } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
 import { generateGradient, cn } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { UpgradeDialog } from "@/components/UpgradeDialog";
 
 export function ProjectsDashboard() {
     const navigate = useNavigate();
@@ -193,39 +194,49 @@ export function ProjectsDashboard() {
                         </p>
                     </div>
 
-                    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                        <DialogTrigger asChild>
-                            <Button className="gap-2">
-                                <Plus className="w-4 h-4" />
-                                New Project
-                            </Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                            <DialogHeader>
-                                <DialogTitle>Create New Project</DialogTitle>
-                                <DialogDescription>
-                                    Give your project a name to get started. You can change this later.
-                                </DialogDescription>
-                            </DialogHeader>
-                            <div className="py-4">
-                                <Input
-                                    placeholder="My Awesome Project"
-                                    value={newProjectName}
-                                    onChange={(e) => setNewProjectName(e.target.value)}
-                                    onKeyDown={(e) => e.key === "Enter" && handleCreateProject()}
-                                />
-                            </div>
-                            <DialogFooter>
-                                <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
-                                    Cancel
+                    <div className="flex items-center gap-3">
+                        <UpgradeDialog
+                            trigger={
+                                <Button variant="outline" className="gap-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 text-orange-500 border-orange-500/20 hover:bg-orange-500/20 transition-all font-medium">
+                                    <Sparkles className="w-4 h-4 animate-pulse" />
+                                    Upgrade
                                 </Button>
-                                <Button onClick={handleCreateProject} disabled={isCreating || !newProjectName.trim()}>
-                                    {isCreating && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                    Create Project
+                            }
+                        />
+                        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                            <DialogTrigger asChild>
+                                <Button className="gap-2">
+                                    <Plus className="w-4 h-4" />
+                                    New Project
                                 </Button>
-                            </DialogFooter>
-                        </DialogContent>
-                    </Dialog>
+                            </DialogTrigger>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>Create New Project</DialogTitle>
+                                    <DialogDescription>
+                                        Give your project a name to get started. You can change this later.
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <div className="py-4">
+                                    <Input
+                                        placeholder="My Awesome Project"
+                                        value={newProjectName}
+                                        onChange={(e) => setNewProjectName(e.target.value)}
+                                        onKeyDown={(e) => e.key === "Enter" && handleCreateProject()}
+                                    />
+                                </div>
+                                <DialogFooter>
+                                    <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+                                        Cancel
+                                    </Button>
+                                    <Button onClick={handleCreateProject} disabled={isCreating || !newProjectName.trim()}>
+                                        {isCreating && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                                        Create Project
+                                    </Button>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
+                    </div>
 
                     {/* Rename Dialog */}
                     <Dialog open={isRenameDialogOpen} onOpenChange={setIsRenameDialogOpen}>

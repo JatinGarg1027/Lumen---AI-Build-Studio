@@ -8,8 +8,12 @@ spring:
         git:
           uri: https://github.com/JatinGarg1027/lovable-ai-config-server
           username: JatinGarg1027
-          password:
+          password: 
           default-label: main
+        overrides:
+          spring.kafka.consumer.properties.spring.json.trusted.packages: "com.distributed_lovable.*,com.codingshuttle.distributed_lovable.*"
+          logging.level.org.springframework.ai: "DEBUG"
+          logging.level.org.springframework.web: "DEBUG"
 
 server:
   port: 8888

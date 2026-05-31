@@ -1,0 +1,249 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.3)
+
+2026-05-31T11:33:10.194+05:30  INFO 26696 --- [intelligence-service] [           main] c.d.i.IntelligenceServiceApplication     : Starting IntelligenceServiceApplication v0.0.1-SNAPSHOT using Java 21.0.11 with PID 26696 (/Users/jatingarg/Downloads/AI Project/Lovable_Distributed-main/intelligence-service/target/intelligence-service-0.0.1-SNAPSHOT.jar started by jatingarg in /Users/jatingarg/Downloads/AI Project/Lovable_Distributed-main/intelligence-service)
+2026-05-31T11:33:10.195+05:30  INFO 26696 --- [intelligence-service] [           main] c.d.i.IntelligenceServiceApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-05-31T11:33:10.213+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Fetching config from server at : http://localhost:8888
+2026-05-31T11:33:10.213+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=intelligence-service, profiles=[default], label=null, version=964a2120e848b00190bca6334ca4e84c32bef554, state=
+2026-05-31T11:33:10.693+05:30  INFO 26696 --- [intelligence-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-31T11:33:10.785+05:30  INFO 26696 --- [intelligence-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 87 ms. Found 4 JPA repository interfaces.
+2026-05-31T11:33:11.031+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=fb62c502-66ae-3132-a3d8-dbc37c92c638
+2026-05-31T11:33:11.250+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 9030 (http)
+2026-05-31T11:33:11.257+05:30  INFO 26696 --- [intelligence-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-31T11:33:11.257+05:30  INFO 26696 --- [intelligence-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-05-31T11:33:11.271+05:30  INFO 26696 --- [intelligence-service] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1056 ms
+2026-05-31T11:33:11.369+05:30  WARN 26696 --- [intelligence-service] [           main] c.d.common_lib.security.AuthUtil         : DEBUG AuthUtil jwt key length=49, first10chars='my-super-s'
+2026-05-31T11:33:11.385+05:30  WARN 26696 --- [intelligence-service] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-31T11:33:11.474+05:30  INFO 26696 --- [intelligence-service] [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-31T11:33:11.522+05:30  INFO 26696 --- [intelligence-service] [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.4.Final
+2026-05-31T11:33:11.923+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-31T11:33:11.945+05:30  INFO 26696 --- [intelligence-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-31T11:33:12.080+05:30  INFO 26696 --- [intelligence-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@73543048
+2026-05-31T11:33:12.080+05:30  INFO 26696 --- [intelligence-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-31T11:33:12.101+05:30  WARN 26696 --- [intelligence-service] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-31T11:33:12.121+05:30  INFO 26696 --- [intelligence-service] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:9010/lovable-intelligence-db]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 18.2
+	Default catalog/schema: lovable-intelligence-db/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-31T11:33:12.302+05:30  WARN 26696 --- [intelligence-service] [           main] org.hibernate.orm.core                   : HHH000038: Composite id class does not override equals(): com.distributed_lovable.intelligence_service.entity.ChatSessionId
+2026-05-31T11:33:12.771+05:30  INFO 26696 --- [intelligence-service] [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-31T11:33:12.827+05:30  INFO 26696 --- [intelligence-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-31T11:33:12.897+05:30 DEBUG 26696 --- [intelligence-service] [           main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-05-31T11:33:12.932+05:30 DEBUG 26696 --- [intelligence-service] [           main] o.s.w.f.ServerHttpObservationFilter      : Filter 'webMvcObservationFilter' configured for use
+2026-05-31T11:33:12.979+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-31T11:33:13.346+05:30 DEBUG 26696 --- [intelligence-service] [           main] o.s.a.m.t.a.ToolCallingAutoConfiguration : Cannot load class: org.springframework.security.oauth2.client.ClientAuthorizationException
+2026-05-31T11:33:13.435+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.c.openfeign.FeignClientFactoryBean   : For 'workspace-service' URL not provided. Will try picking an instance via load-balancing.
+2026-05-31T11:33:13.822+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.c.openfeign.FeignClientFactoryBean   : For 'account-service' URL not provided. Will try picking an instance via load-balancing.
+2026-05-31T11:33:13.885+05:30  WARN 26696 --- [intelligence-service] [           main] .s.a.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: e174ed13-0a8f-4243-a412-c2798d092870
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-05-31T11:33:13.888+05:30  INFO 26696 --- [intelligence-service] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-05-31T11:33:14.017+05:30 DEBUG 26696 --- [intelligence-service] [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : 4 mappings in 'requestMappingHandlerMapping'
+2026-05-31T11:33:14.039+05:30 DEBUG 26696 --- [intelligence-service] [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2026-05-31T11:33:14.126+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-05-31T11:33:14.164+05:30 DEBUG 26696 --- [intelligence-service] [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 2 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-05-31T11:33:14.386+05:30  INFO 26696 --- [intelligence-service] [           main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestClient.
+2026-05-31T11:33:14.404+05:30  WARN 26696 --- [intelligence-service] [           main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-05-31T11:33:14.450+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-05-31T11:33:14.466+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-05-31T11:33:14.469+05:30  INFO 26696 --- [intelligence-service] [           main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T11:33:14.474+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-05-31T11:33:14.474+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-05-31T11:33:14.474+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-05-31T11:33:14.474+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-05-31T11:33:14.474+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-05-31T11:33:14.474+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-05-31T11:33:14.474+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-05-31T11:33:14.536+05:30 DEBUG 26696 --- [intelligence-service] [           main] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:33:14.552+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-05-31T11:33:14.553+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-05-31T11:33:14.554+05:30  INFO 26696 --- [intelligence-service] [           main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-05-31T11:33:14.554+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1780207394554 with initial instances count: 1
+2026-05-31T11:33:14.556+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application INTELLIGENCE-SERVICE with eureka with status UP
+2026-05-31T11:33:14.557+05:30  INFO 26696 --- [intelligence-service] [           main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1780207394557, current=UP, previous=STARTING]
+2026-05-31T11:33:14.558+05:30  INFO 26696 --- [intelligence-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_INTELLIGENCE-SERVICE/192.168.1.2:intelligence-service:9030: registering service...
+2026-05-31T11:33:14.566+05:30  INFO 26696 --- [intelligence-service] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 9030 (http) with context path '/'
+2026-05-31T11:33:14.566+05:30  INFO 26696 --- [intelligence-service] [           main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 9030
+2026-05-31T11:33:14.568+05:30 DEBUG 26696 --- [intelligence-service] [foReplicator-%d] o.s.web.client.DefaultRestClient         : Writing [InstanceInfo [instanceId = 192.168.1.2:intelligence-service:9030, appName = INTELLIGENCE-SERVICE, hostName = 192.168.1.2, status = UP, ipAddr = 192.168.1.2, port = 9030, securePort = 443, dataCenterInfo = com.netflix.appinfo.MyDataCenterInfo@5084cf1c] as "application/json" with org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+2026-05-31T11:33:14.579+05:30  INFO 26696 --- [intelligence-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_INTELLIGENCE-SERVICE/192.168.1.2:intelligence-service:9030 - registration status: 204
+2026-05-31T11:33:14.686+05:30  INFO 26696 --- [intelligence-service] [           main] c.d.i.IntelligenceServiceApplication     : Started IntelligenceServiceApplication in 8.435 seconds (process running for 8.853)
+2026-05-31T11:33:17.886+05:30  INFO 26696 --- [intelligence-service] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : intelligence-group: partitions assigned: [file-store-responses-0]
+2026-05-31T11:33:44.571+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:34:14.590+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:34:44.599+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:34:52.007+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-31T11:34:52.007+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-31T11:34:52.007+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2026-05-31T11:34:52.007+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2026-05-31T11:34:52.010+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@fff7d5f
+2026-05-31T11:34:52.010+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@577269f
+2026-05-31T11:34:52.010+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-05-31T11:34:52.010+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-05-31T11:34:52.020+05:30  WARN 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.w.s.h.HandlerMappingIntrospector     : Cache miss for REQUEST dispatch to '/chat/projects/5' (previous null). Performing CorsConfiguration lookup. This is logged once only at WARN level, and every time at TRACE.
+2026-05-31T11:34:52.022+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.cors.DefaultCorsProcessor        : Skip: no CORS configuration has been provided
+2026-05-31T11:34:52.022+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-1] c.d.common_lib.security.JwtAuthFilter    : incoming request: /chat/projects/5
+2026-05-31T11:34:52.056+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/chat/projects/5", parameters={}
+2026-05-31T11:34:52.057+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.distributed_lovable.intelligence_service.controller.ChatController#getChatHistory(String)
+Hibernate: select distinct cm1_0.id,cm1_0.project_id,cm1_0.user_id,cm1_0.content,cm1_0.created_at,e1_0.chat_message_id,e1_0.id,e1_0.content,e1_0.file_path,e1_0.metadata,e1_0.saga_id,e1_0.sequence_order,e1_0.status,e1_0.type,cm1_0.role,cm1_0.tokens_used from chat_messages cm1_0 left join chat_events e1_0 on cm1_0.id=e1_0.chat_message_id where (cm1_0.project_id,cm1_0.user_id)=(?,?) order by cm1_0.created_at,e1_0.sequence_order,e1_0.sequence_order
+2026-05-31T11:34:52.154+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-05-31T11:34:52.156+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[ChatResponse[id=15, content=create a snake ladder game frontend UI for me, role=USER, events=[], to (truncated)...]
+2026-05-31T11:34:52.172+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-31T11:35:14.616+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:35:33.992+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] o.s.web.cors.DefaultCorsProcessor        : Skip: no CORS configuration has been provided
+2026-05-31T11:35:33.993+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-2] c.d.common_lib.security.JwtAuthFilter    : incoming request: /chat/projects/5
+2026-05-31T11:35:33.998+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/chat/projects/5", parameters={}
+2026-05-31T11:35:33.999+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.distributed_lovable.intelligence_service.controller.ChatController#getChatHistory(String)
+Hibernate: select distinct cm1_0.id,cm1_0.project_id,cm1_0.user_id,cm1_0.content,cm1_0.created_at,e1_0.chat_message_id,e1_0.id,e1_0.content,e1_0.file_path,e1_0.metadata,e1_0.saga_id,e1_0.sequence_order,e1_0.status,e1_0.type,cm1_0.role,cm1_0.tokens_used from chat_messages cm1_0 left join chat_events e1_0 on cm1_0.id=e1_0.chat_message_id where (cm1_0.project_id,cm1_0.user_id)=(?,?) order by cm1_0.created_at,e1_0.sequence_order,e1_0.sequence_order
+2026-05-31T11:35:34.031+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-05-31T11:35:34.031+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[ChatResponse[id=15, content=create a snake ladder game frontend UI for me, role=USER, events=[], to (truncated)...]
+2026-05-31T11:35:34.033+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-31T11:35:44.628+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:36:14.641+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:36:44.655+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:37:14.667+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:37:44.682+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:38:14.481+05:30  INFO 26696 --- [intelligence-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T11:38:14.692+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:38:44.703+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:39:14.718+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:39:44.727+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:40:14.739+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:40:44.748+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:41:14.759+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:41:44.768+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:42:14.777+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:42:44.788+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:43:14.485+05:30  INFO 26696 --- [intelligence-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T11:43:14.797+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:43:44.805+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:44:14.821+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:44:44.830+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:45:14.846+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:45:44.855+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:46:14.867+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:46:44.877+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:47:14.888+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:47:44.900+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:48:14.482+05:30  INFO 26696 --- [intelligence-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T11:48:14.897+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:48:44.904+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:49:14.931+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:49:42.741+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-4] o.s.web.cors.DefaultCorsProcessor        : Skip: no CORS configuration has been provided
+2026-05-31T11:49:42.742+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-4] c.d.common_lib.security.JwtAuthFilter    : incoming request: /chat/projects/5
+2026-05-31T11:49:42.745+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/chat/projects/5", parameters={}
+2026-05-31T11:49:42.745+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.distributed_lovable.intelligence_service.controller.ChatController#getChatHistory(String)
+Hibernate: select distinct cm1_0.id,cm1_0.project_id,cm1_0.user_id,cm1_0.content,cm1_0.created_at,e1_0.chat_message_id,e1_0.id,e1_0.content,e1_0.file_path,e1_0.metadata,e1_0.saga_id,e1_0.sequence_order,e1_0.status,e1_0.type,cm1_0.role,cm1_0.tokens_used from chat_messages cm1_0 left join chat_events e1_0 on cm1_0.id=e1_0.chat_message_id where (cm1_0.project_id,cm1_0.user_id)=(?,?) order by cm1_0.created_at,e1_0.sequence_order,e1_0.sequence_order
+2026-05-31T11:49:42.766+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-05-31T11:49:42.766+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[ChatResponse[id=15, content=create a snake ladder game frontend UI for me, role=USER, events=[], to (truncated)...]
+2026-05-31T11:49:42.768+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-31T11:49:44.939+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:50:14.953+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:50:44.969+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:51:14.986+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:51:44.997+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:52:15.008+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:52:28.567+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-6] o.s.web.cors.DefaultCorsProcessor        : Skip: no CORS configuration has been provided
+2026-05-31T11:52:28.568+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-6] c.d.common_lib.security.JwtAuthFilter    : incoming request: /chat/projects/6
+2026-05-31T11:52:28.572+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/chat/projects/6", parameters={}
+2026-05-31T11:52:28.572+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.distributed_lovable.intelligence_service.controller.ChatController#getChatHistory(String)
+Hibernate: select distinct cm1_0.id,cm1_0.project_id,cm1_0.user_id,cm1_0.content,cm1_0.created_at,e1_0.chat_message_id,e1_0.id,e1_0.content,e1_0.file_path,e1_0.metadata,e1_0.saga_id,e1_0.sequence_order,e1_0.status,e1_0.type,cm1_0.role,cm1_0.tokens_used from chat_messages cm1_0 left join chat_events e1_0 on cm1_0.id=e1_0.chat_message_id where (cm1_0.project_id,cm1_0.user_id)=(?,?) order by cm1_0.created_at,e1_0.sequence_order,e1_0.sequence_order
+2026-05-31T11:52:28.587+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-05-31T11:52:28.587+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[]]
+2026-05-31T11:52:28.589+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-31T11:52:45.020+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:53:14.490+05:30  INFO 26696 --- [intelligence-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T11:53:15.030+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:53:19.481+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-7] o.s.web.cors.DefaultCorsProcessor        : Skip: no CORS configuration has been provided
+2026-05-31T11:53:19.481+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-7] c.d.common_lib.security.JwtAuthFilter    : incoming request: /chat/projects/5
+2026-05-31T11:53:19.485+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/chat/projects/5", parameters={}
+2026-05-31T11:53:19.486+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.distributed_lovable.intelligence_service.controller.ChatController#getChatHistory(String)
+Hibernate: select distinct cm1_0.id,cm1_0.project_id,cm1_0.user_id,cm1_0.content,cm1_0.created_at,e1_0.chat_message_id,e1_0.id,e1_0.content,e1_0.file_path,e1_0.metadata,e1_0.saga_id,e1_0.sequence_order,e1_0.status,e1_0.type,cm1_0.role,cm1_0.tokens_used from chat_messages cm1_0 left join chat_events e1_0 on cm1_0.id=e1_0.chat_message_id where (cm1_0.project_id,cm1_0.user_id)=(?,?) order by cm1_0.created_at,e1_0.sequence_order,e1_0.sequence_order
+2026-05-31T11:53:19.493+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-05-31T11:53:19.494+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[ChatResponse[id=15, content=create a snake ladder game frontend UI for me, role=USER, events=[], to (truncated)...]
+2026-05-31T11:53:19.495+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-31T11:53:45.057+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:54:15.069+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:54:45.079+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:55:15.094+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:55:45.105+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:56:15.116+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:56:45.122+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:57:15.130+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T11:57:21.689+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-9] o.s.web.cors.DefaultCorsProcessor        : Skip: no CORS configuration has been provided
+2026-05-31T11:57:21.691+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-9] c.d.common_lib.security.JwtAuthFilter    : incoming request: /chat/projects/5
+2026-05-31T11:57:21.695+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/chat/projects/5", parameters={}
+2026-05-31T11:57:21.696+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.distributed_lovable.intelligence_service.controller.ChatController#getChatHistory(String)
+Hibernate: select distinct cm1_0.id,cm1_0.project_id,cm1_0.user_id,cm1_0.content,cm1_0.created_at,e1_0.chat_message_id,e1_0.id,e1_0.content,e1_0.file_path,e1_0.metadata,e1_0.saga_id,e1_0.sequence_order,e1_0.status,e1_0.type,cm1_0.role,cm1_0.tokens_used from chat_messages cm1_0 left join chat_events e1_0 on cm1_0.id=e1_0.chat_message_id where (cm1_0.project_id,cm1_0.user_id)=(?,?) order by cm1_0.created_at,e1_0.sequence_order,e1_0.sequence_order
+2026-05-31T11:57:21.714+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-05-31T11:57:21.714+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[ChatResponse[id=15, content=create a snake ladder game frontend UI for me, role=USER, events=[], to (truncated)...]
+2026-05-31T11:57:21.716+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-31T12:14:09.506+05:30  WARN 26696 --- [intelligence-service] [l-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m57s125ms).
+2026-05-31T12:14:12.282+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:14:41.634+05:30  INFO 26696 --- [intelligence-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T12:14:42.300+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:15:12.310+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:15:42.321+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:15:46.435+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.cors.DefaultCorsProcessor        : Skip: no CORS configuration has been provided
+2026-05-31T12:15:46.436+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-1] c.d.common_lib.security.JwtAuthFilter    : incoming request: /chat/projects/2
+2026-05-31T12:15:46.444+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/chat/projects/2", parameters={}
+2026-05-31T12:15:46.445+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.distributed_lovable.intelligence_service.controller.ChatController#getChatHistory(String)
+Hibernate: select distinct cm1_0.id,cm1_0.project_id,cm1_0.user_id,cm1_0.content,cm1_0.created_at,e1_0.chat_message_id,e1_0.id,e1_0.content,e1_0.file_path,e1_0.metadata,e1_0.saga_id,e1_0.sequence_order,e1_0.status,e1_0.type,cm1_0.role,cm1_0.tokens_used from chat_messages cm1_0 left join chat_events e1_0 on cm1_0.id=e1_0.chat_message_id where (cm1_0.project_id,cm1_0.user_id)=(?,?) order by cm1_0.created_at,e1_0.sequence_order,e1_0.sequence_order
+2026-05-31T12:15:46.463+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-05-31T12:15:46.464+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[ChatResponse[id=1, content=hi, role=USER, events=[], tokensUsed=2011, createdAt=2026-05-26T20:39:03 (truncated)...]
+2026-05-31T12:15:46.467+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-31T12:15:49.639+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] o.s.web.cors.DefaultCorsProcessor        : Skip: no CORS configuration has been provided
+2026-05-31T12:15:49.639+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-2] c.d.common_lib.security.JwtAuthFilter    : incoming request: /chat/projects/6
+2026-05-31T12:15:49.641+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/chat/projects/6", parameters={}
+2026-05-31T12:15:49.641+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.distributed_lovable.intelligence_service.controller.ChatController#getChatHistory(String)
+Hibernate: select distinct cm1_0.id,cm1_0.project_id,cm1_0.user_id,cm1_0.content,cm1_0.created_at,e1_0.chat_message_id,e1_0.id,e1_0.content,e1_0.file_path,e1_0.metadata,e1_0.saga_id,e1_0.sequence_order,e1_0.status,e1_0.type,cm1_0.role,cm1_0.tokens_used from chat_messages cm1_0 left join chat_events e1_0 on cm1_0.id=e1_0.chat_message_id where (cm1_0.project_id,cm1_0.user_id)=(?,?) order by cm1_0.created_at,e1_0.sequence_order,e1_0.sequence_order
+2026-05-31T12:15:49.645+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-05-31T12:15:49.646+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[]]
+2026-05-31T12:15:49.647+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-31T12:16:06.448+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-3] o.s.web.cors.DefaultCorsProcessor        : Skip: no CORS configuration has been provided
+2026-05-31T12:16:06.452+05:30  INFO 26696 --- [intelligence-service] [nio-9030-exec-3] c.d.common_lib.security.JwtAuthFilter    : incoming request: /chat/projects/5
+2026-05-31T12:16:06.460+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/chat/projects/5", parameters={}
+2026-05-31T12:16:06.460+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.distributed_lovable.intelligence_service.controller.ChatController#getChatHistory(String)
+Hibernate: select distinct cm1_0.id,cm1_0.project_id,cm1_0.user_id,cm1_0.content,cm1_0.created_at,e1_0.chat_message_id,e1_0.id,e1_0.content,e1_0.file_path,e1_0.metadata,e1_0.saga_id,e1_0.sequence_order,e1_0.status,e1_0.type,cm1_0.role,cm1_0.tokens_used from chat_messages cm1_0 left join chat_events e1_0 on cm1_0.id=e1_0.chat_message_id where (cm1_0.project_id,cm1_0.user_id)=(?,?) order by cm1_0.created_at,e1_0.sequence_order,e1_0.sequence_order
+2026-05-31T12:16:06.468+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/yaml]
+2026-05-31T12:16:06.468+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[ChatResponse[id=15, content=create a snake ladder game frontend UI for me, role=USER, events=[], to (truncated)...]
+2026-05-31T12:16:06.469+05:30 DEBUG 26696 --- [intelligence-service] [nio-9030-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2026-05-31T12:16:12.331+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:16:42.337+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:17:12.349+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:17:42.362+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:18:12.409+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:18:42.416+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:19:12.424+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:19:41.650+05:30  INFO 26696 --- [intelligence-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T12:19:42.437+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:20:12.455+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:20:42.466+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:21:12.478+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:21:42.493+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:22:12.504+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:22:42.520+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:23:12.529+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:23:42.549+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:24:12.557+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:24:41.661+05:30  INFO 26696 --- [intelligence-service] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-05-31T12:24:42.568+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:25:12.582+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]
+2026-05-31T12:25:42.597+05:30 DEBUG 26696 --- [intelligence-service] [reshExecutor-%d] o.s.web.client.DefaultRestClient         : Reading to [com.netflix.discovery.shared.Applications]

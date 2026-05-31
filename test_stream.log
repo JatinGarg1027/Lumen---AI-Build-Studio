@@ -1,0 +1,326 @@
+data:{"text":""}
+
+data:{"text":"<"}
+
+data:{"text":"tool"}
+
+data:{"text":" args"}
+
+data:{"text":"=\""}
+
+data:{"text":"src"}
+
+data:{"text":"/App"}
+
+data:{"text":".ts"}
+
+data:{"text":"x"}
+
+data:{"text":"\">"}
+
+data:{"text":"Reading"}
+
+data:{"text":" App"}
+
+data:{"text":".ts"}
+
+data:{"text":"x"}
+
+data:{"text":"...</"}
+
+data:{"text":"tool"}
+
+data:{"text":">\n"}
+
+data:{"text":""}
+
+data:{"text":"<message"}
+
+data:{"text":" phase"}
+
+data:{"text":"=\""}
+
+data:{"text":"pl"}
+
+data:{"text":"anning"}
+
+data:{"text":"\">"}
+
+data:{"text":"I"}
+
+data:{"text":" will"}
+
+data:{"text":" create"}
+
+data:{"text":" a"}
+
+data:{"text":" simple"}
+
+data:{"text":" counter"}
+
+data:{"text":" React"}
+
+data:{"text":" component"}
+
+data:{"text":" in"}
+
+data:{"text":" src"}
+
+data:{"text":"/App"}
+
+data:{"text":".ts"}
+
+data:{"text":"x"}
+
+data:{"text":".</"}
+
+data:{"text":"message"}
+
+data:{"text":">\n"}
+
+data:{"text":"<"}
+
+data:{"text":"file"}
+
+data:{"text":" path"}
+
+data:{"text":"=\""}
+
+data:{"text":"src"}
+
+data:{"text":"/App"}
+
+data:{"text":".ts"}
+
+data:{"text":"x"}
+
+data:{"text":"\">"}
+
+data:{"text":"import"}
+
+data:{"text":" React"}
+
+data:{"text":","}
+
+data:{"text":" {"}
+
+data:{"text":" useState"}
+
+data:{"text":" }"}
+
+data:{"text":" from"}
+
+data:{"text":" '"}
+
+data:{"text":"react"}
+
+data:{"text":"';\n\n"}
+
+data:{"text":"function"}
+
+data:{"text":" App"}
+
+data:{"text":"()"}
+
+data:{"text":" {\n"}
+
+data:{"text":" "}
+
+data:{"text":" const"}
+
+data:{"text":" ["}
+
+data:{"text":"count"}
+
+data:{"text":","}
+
+data:{"text":" set"}
+
+data:{"text":"Count"}
+
+data:{"text":"]"}
+
+data:{"text":" ="}
+
+data:{"text":" useState"}
+
+data:{"text":"("}
+
+data:{"text":"0"}
+
+data:{"text":");\n\n"}
+
+data:{"text":" "}
+
+data:{"text":" return"}
+
+data:{"text":" (\n"}
+
+data:{"text":"   "}
+
+data:{"text":" <"}
+
+data:{"text":"div"}
+
+data:{"text":">\n"}
+
+data:{"text":"     "}
+
+data:{"text":" <"}
+
+data:{"text":"p"}
+
+data:{"text":">"}
+
+data:{"text":"Count"}
+
+data:{"text":":"}
+
+data:{"text":" {"}
+
+data:{"text":"count"}
+
+data:{"text":"}</"}
+
+data:{"text":"p"}
+
+data:{"text":">\n"}
+
+data:{"text":"     "}
+
+data:{"text":" <"}
+
+data:{"text":"button"}
+
+data:{"text":" onClick"}
+
+data:{"text":"={()"}
+
+data:{"text":" =>"}
+
+data:{"text":" set"}
+
+data:{"text":"Count"}
+
+data:{"text":"(count"}
+
+data:{"text":" +"}
+
+data:{"text":" "}
+
+data:{"text":"1"}
+
+data:{"text":")}>"}
+
+data:{"text":"Increment"}
+
+data:{"text":"</"}
+
+data:{"text":"button"}
+
+data:{"text":">\n"}
+
+data:{"text":"     "}
+
+data:{"text":" <"}
+
+data:{"text":"button"}
+
+data:{"text":" onClick"}
+
+data:{"text":"={()"}
+
+data:{"text":" =>"}
+
+data:{"text":" set"}
+
+data:{"text":"Count"}
+
+data:{"text":"(count"}
+
+data:{"text":" -"}
+
+data:{"text":" "}
+
+data:{"text":"1"}
+
+data:{"text":")}>"}
+
+data:{"text":"Dec"}
+
+data:{"text":"rement"}
+
+data:{"text":"</"}
+
+data:{"text":"button"}
+
+data:{"text":">\n"}
+
+data:{"text":"   "}
+
+data:{"text":" </"}
+
+data:{"text":"div"}
+
+data:{"text":">\n"}
+
+data:{"text":" "}
+
+data:{"text":" );\n"}
+
+data:{"text":"}\n\n"}
+
+data:{"text":"export"}
+
+data:{"text":" default"}
+
+data:{"text":" App"}
+
+data:{"text":";\n"}
+
+data:{"text":"</"}
+
+data:{"text":"file"}
+
+data:{"text":">\n"}
+
+data:{"text":"<message"}
+
+data:{"text":" phase"}
+
+data:{"text":"=\""}
+
+data:{"text":"completed"}
+
+data:{"text":"\">"}
+
+data:{"text":"Created"}
+
+data:{"text":" a"}
+
+data:{"text":" simple"}
+
+data:{"text":" counter"}
+
+data:{"text":" React"}
+
+data:{"text":" component"}
+
+data:{"text":" in"}
+
+data:{"text":" src"}
+
+data:{"text":"/App"}
+
+data:{"text":".ts"}
+
+data:{"text":"x"}
+
+data:{"text":".</"}
+
+data:{"text":"message"}
+
+data:{"text":">"}
+
+data:{"text":""}
+
