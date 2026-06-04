@@ -179,27 +179,39 @@
 					</excludes>
 				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>3.4.4</version>
-                <configuration>
-                    <to>
-                        <image>docker.io/bathamayush88/lovable-${project.name}:${project.version}</image>
-                        <tags>
-                            <tag>latest</tag>
-                        </tags>
-                    </to>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<plugin>
+    <groupId>com.google.cloud.tools</groupId>
+    <artifactId>jib-maven-plugin</artifactId>
+    <version>3.4.4</version>
+
+    <configuration>
+<from>
+    <image>	</image>
+</from>
+
+        <to>
+            <image>docker.io/jatingarg1027/lovable-${project.name}</image>
+
+            <tags>
+                <tag>latest</tag>
+                <tag>${project.version}</tag>
+            </tags>
+        </to>
+
+        <container>
+            <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+        </container>
+    </configuration>
+
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals>
+                <goal>build</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
 		</plugins>
 	</build>
 

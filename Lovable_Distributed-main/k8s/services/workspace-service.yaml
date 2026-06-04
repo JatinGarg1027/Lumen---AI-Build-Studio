@@ -54,10 +54,10 @@ spec:
       serviceAccountName: workspace-service-account
       containers:
         - name: workspace-service
-          image: bathamayush88/lovable-workspace-service:latest
+          image: jatingarg1027/lovable-workspace-service:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 9021
+            - containerPort: 9020
           envFrom:
             - configMapRef:
                 name: lovable-shared-config
@@ -75,22 +75,22 @@ spec:
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: WORKSPACE_DB_PASSWORD
             - name: MINIO_ROOT_USER
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: MINIO_ROOT_USER
             - name: MINIO_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: MINIO_ROOT_PASSWORD
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: JWT_SECRET
           resources:
             requests:
@@ -101,16 +101,16 @@ spec:
               memory: 512Mi
           readinessProbe:
             httpGet:
-              path: /workspace/actuator/health
-              port: 9021
+              path: /actuator/health
+              port: 9020
             initialDelaySeconds: 90
             periodSeconds: 15
             timeoutSeconds: 5
             failureThreshold: 3
           startupProbe:
             httpGet:
-              path: /workspace/actuator/health
-              port: 9021
+              path: /actuator/health
+              port: 9020
             failureThreshold: 30
             periodSeconds: 10
             timeoutSeconds: 5
@@ -125,4 +125,4 @@ spec:
     app: workspace-service
   ports:
     - port: 80
-      targetPort: 9021
+      targetPort: 9020

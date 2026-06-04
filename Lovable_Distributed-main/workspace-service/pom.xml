@@ -197,7 +197,7 @@
                 <version>3.4.4</version>
                 <configuration>
                     <to>
-                        <image>docker.io/bathamayush88/lovable-${project.name}:${project.version}</image>
+                        <image>docker.io/jatingarg1027/lovable-${project.name}:${project.version}</image>
                         <tags>
                             <tag>latest</tag>
                         </tags>

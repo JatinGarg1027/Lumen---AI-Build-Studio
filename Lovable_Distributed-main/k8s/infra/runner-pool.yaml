@@ -45,12 +45,12 @@ spec:
             - name: MINIO_USER
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: MINIO_ROOT_USER
             - name: MINIO_PASS
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: MINIO_ROOT_PASSWORD
             # Constructing the host URL for the internal MinIO service
             - name: MC_HOST_myminio

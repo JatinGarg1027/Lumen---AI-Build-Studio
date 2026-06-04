@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: intelligence-service
-          image: bathamayush88/lovable-intelligence-service:latest
+          image: jatingarg1027/lovable-intelligence-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 9030
@@ -35,19 +35,19 @@ spec:
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: INTELLIGENCE_DB_PASSWORD
             - name: AI_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: AI_API_KEY
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: JWT_SECRET
-          resources:
+          resources:  
             requests:
               cpu: 100m
               memory: 256Mi
@@ -56,7 +56,7 @@ spec:
               memory: 512Mi
           readinessProbe:
             httpGet:
-              path: /intelligence/actuator/health
+              path: /actuator/health
               port: 9030
             initialDelaySeconds: 90
             periodSeconds: 15
@@ -64,7 +64,7 @@ spec:
             failureThreshold: 3
           startupProbe:
             httpGet:
-              path: /intelligence/actuator/health
+              path: /actuator/health
               port: 9030
             failureThreshold: 30
             periodSeconds: 10

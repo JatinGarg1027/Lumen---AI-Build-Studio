@@ -68,22 +68,22 @@ spec:
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: POSTGRES_PASSWORD
             - name: ACCOUNT_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: ACCOUNT_DB_PASSWORD
             - name: WORKSPACE_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: WORKSPACE_DB_PASSWORD
             - name: INTELLIGENCE_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: INTELLIGENCE_DB_PASSWORD
           resources:
             requests:

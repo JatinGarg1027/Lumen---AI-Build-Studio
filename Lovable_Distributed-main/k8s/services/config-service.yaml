@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: config-service
-          image: bathamayush88/lovable-config-service:latest
+          image: jatingarg1027/lovable-config-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8888
@@ -27,12 +27,12 @@ spec:
             - name: GIT_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: GIT_USERNAME
             - name: GIT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: app-secrets
+                  name: app-secret
                   key: GIT_PASSWORD
           resources:
             requests:
