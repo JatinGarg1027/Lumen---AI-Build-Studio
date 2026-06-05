@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-ENV VITE_API_URL=http://api.frontendai.in
+ENV VITE_API_URL=/api
 RUN npm run build
 
 # Stage 2: Serve with NGINX

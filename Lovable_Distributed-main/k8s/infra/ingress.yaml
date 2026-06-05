@@ -5,10 +5,32 @@ metadata:
   namespace: lovable-core
 spec:
   ingressClassName: nginx
+
   rules:
-  - http:
+  - host: "*.previews.my-domain.com"
+    http:
       paths:
       - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: lovable-me-proxy
+            port:
+              number: 80
+  - http:
+      paths:
+
+      # FRONTEND
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: lovable-frontend
+            port:
+              number: 80
+
+      # BACKEND API
+      - path: /api
         pathType: Prefix
         backend:
           service:
