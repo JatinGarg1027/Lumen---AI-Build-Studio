@@ -7,8 +7,8 @@ spring:
       server:
         git:
           uri: https://github.com/JatinGarg1027/lovable-ai-config-server
-          username: JatinGarg1027
-          password: 
+          username: ${GIT_USERNAME:JatinGarg1027}
+          password: ${GIT_PASSWORD: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}
           default-label: main
         overrides:
           spring.kafka.consumer.properties.spring.json.trusted.packages: "com.distributed_lovable.*,com.codingshuttle.distributed_lovable.*"
