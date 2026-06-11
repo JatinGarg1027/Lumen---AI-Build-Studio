@@ -45,6 +45,13 @@ export const useStreamParser = (streamBuffer: string) => {
       });
     }
 
+    if (events.length === 0 && streamBuffer.trim().length > 0) {
+      events.push({
+        type: ChatEventType.MESSAGE,
+        content: streamBuffer
+      });
+    }
+
     return events;
   }, [streamBuffer]);
 };

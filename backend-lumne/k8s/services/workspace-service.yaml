@@ -54,7 +54,7 @@ spec:
       serviceAccountName: workspace-service-account
       containers:
         - name: workspace-service
-          image: jatingarg1027/lovable-workspace-service:latest
+          image: jatingarg1027/lovable-workspace-service:v3
           imagePullPolicy: Always
           ports:
             - containerPort: 9020

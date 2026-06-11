@@ -158,22 +158,21 @@ public class AiGenerationServiceImpl implements AiGenerationService {
                 .stream()  // so we send streams not just one answer
                 .chatResponse()// has many things like tools and other info but we just need the text back
                 .doOnNext(response->{ // when on next chunk of same response
-
-                    if(response.getResults()!=null && !response.getResults().isEmpty())
-                    {
-                        String content=response.getResult().getOutput().getText(); // its like i am can be first response then ayush 2nd I am a coder will be 3rd and so on so we will keep appending these chunks to string buider below
-
-                        if(content != null && !content.isEmpty() && endTime.get()==0) // first non empty chunk received on doFirst u can get empty chunk as well
-                        {
-                            endTime.set(System.currentTimeMillis());
+                    if (response.getResults() != null && !response.getResults().isEmpty()) {
+                        var result = response.getResult();
+                        if (result != null && result.getOutput() != null) {
+                            String content = result.getOutput().getText();
+                            if (content != null && !content.isEmpty()) {
+                                if (endTime.get() == 0) {
+                                    endTime.set(System.currentTimeMillis());
+                                }
+                                fullResponseBuffer.append(content);
+                            }
                         }
-                        if(response.getMetadata().getUsage()!=null)
-                        {
-                            usageRef.set(response.getMetadata().getUsage());
-                        }
-                        fullResponseBuffer.append(content);
                     }
-
+                    if (response.getMetadata() != null && response.getMetadata().getUsage() != null) {
+                        usageRef.set(response.getMetadata().getUsage());
+                    }
                 })
                 .doOnComplete(()->{ // when llm stop sending text that is all chunks are received for the current response
                     Schedulers.boundedElastic().schedule(()->{ // this function creates a seperate thread to perform the below function as below function is heavy and require resources
@@ -186,13 +185,14 @@ public class AiGenerationServiceImpl implements AiGenerationService {
                 })
                 .doOnError(error->log.error("Error during Streaming for projectId {}", projectId+""+error))
                 .map(response->{
-                    if(response.getResults()!=null && !response.getResults().isEmpty())
-                    {
-                        String text= Objects.requireNonNull(response.getResult()).getOutput().getText();
-                        return  new StreamResponse(text != null ? text: "");
+                    if (response.getResults() != null && !response.getResults().isEmpty()) {
+                        var result = response.getResult();
+                        if (result != null && result.getOutput() != null) {
+                            String text = result.getOutput().getText();
+                            return new StreamResponse(text != null ? text : "");
+                        }
                     }
                     return new StreamResponse("");
-
                 });
 
 
@@ -213,11 +213,14 @@ public class AiGenerationServiceImpl implements AiGenerationService {
 
     private void finalizeChats(String userMessage , ChatSession chatSession ,String fullText,Long duration,Usage usage,Long userId){
         Long projectId=chatSession.getId().getProjectId();
+        int promptTokens = 0;
+        int completionTokens = 0;
 
-        if(usage != null)
-        {
+        if (usage != null) {
+            promptTokens = usage.getPromptTokens();
+            completionTokens = usage.getCompletionTokens();
             int totalTokens = usage.getTotalTokens();
-            usageService.recordTokenUsage(chatSession.getId().getUserId(),totalTokens);
+            usageService.recordTokenUsage(chatSession.getId().getUserId(), totalTokens);
         }
 
         //save the User Message
@@ -226,7 +229,7 @@ public class AiGenerationServiceImpl implements AiGenerationService {
                         .chatSession(chatSession)
                         .role(MessageRole.USER)
                         .content(userMessage)
-                        .tokensUsed(usage.getPromptTokens())
+                        .tokensUsed(promptTokens)
                         .build()
         );
 
@@ -234,7 +237,7 @@ public class AiGenerationServiceImpl implements AiGenerationService {
                 .role(MessageRole.ASSISTANT)
                 .content("Assistant Message here .....")
                 .chatSession(chatSession)
-                .tokensUsed(usage.getCompletionTokens())
+                .tokensUsed(completionTokens)
                 .build();
 
         assistantChatMessage=chatMessageRepository.save(assistantChatMessage);

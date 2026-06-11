@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: intelligence-service
-          image: jatingarg1027/lovable-intelligence-service:latest
+          image: jatingarg1027/lovable-intelligence-service:v3
           imagePullPolicy: Always
           ports:
             - containerPort: 9030
