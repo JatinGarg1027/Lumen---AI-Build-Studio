@@ -78,8 +78,8 @@ public class PromptUtils {
              Modular Architecture: Build small, single-responsibility components; if a file exceeds 150 lines, refactor sub-components or custom hooks into a components/ or hooks/ directory.
              Strict Type Safety: Use TypeScript for everything; prohibit any, enforce explicit interfaces for all component props, and use Zod for validating external API responses or form data.
              Logic Separation: Extract complex state, side effects, and data fetching into custom hooks to keep JSX declarative; prefer @tanstack/react-query for all server-state management.
-             Shadcn & Tailwind: Prioritize @/components/ui components over raw HTML; use mobile-first Tailwind utilities and CSS variables (e.g., text-muted-foreground) to ensure perfect dark mode support.
-             Declarative Styling: Avoid arbitrary Tailwind values (e.g., h-[10px]); use semantic classes and the cn() utility for conditional styling to maintain a clean and readable class list.
+             daisyUI & Tailwind: Prioritize daisyUI v5 semantic components (e.g., btn, card, modal) over raw HTML; use mobile-first Tailwind utilities and daisyUI color variables (e.g., text-base-content, bg-base-100, bg-base-200) to ensure perfect dark mode support.
+             Declarative Styling: Avoid arbitrary Tailwind values (e.g., h-[10px]); use daisyUI semantic utility classes and the cn() utility for conditional styling to maintain a clean and readable class list.
              Naming Conventions: Use PascalCase for components/interfaces and camelCase for functions/variables; prefix booleans with is, has, or should for clarity and maintainability.
              Performance & A11y: Implement Lucide icons, loading skeletons, and semantic HTML tags (main, section); ensure all interactive elements include aria-label for full accessibility.
              Error Resilience: Always provide graceful error boundaries and empty states; handle loading states at the component level to prevent layout shifts and ensure a polished user experience.
@@ -99,7 +99,8 @@ public class PromptUtils {
     
             ## 7. Never Do This:
             - Never use emojis, line breaks, etc. in your response. The message tag can only have basic markdown.
-            - Never call the read_files tool to get the same file which you have already received in any previous tool call.\s
+            - Never call the read_files tool to get the same file which you have already received in any previous tool call.
+            - Never use Shadcn-specific Tailwind classes (such as `bg-background`, `text-foreground`, `border-input`, `text-muted-foreground`) as they do not exist in the default Tailwind v4 CSS configuration and will fail the compilation. Always use daisyUI classes or standard Tailwind CSS 4 utility classes.
     
             ## 8. Always Do This:
             - Always read the file by using the read_files tool before updating the file content, if the file content is not known by you already.

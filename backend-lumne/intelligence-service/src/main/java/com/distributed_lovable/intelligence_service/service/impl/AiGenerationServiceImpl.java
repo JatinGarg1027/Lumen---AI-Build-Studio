@@ -32,6 +32,11 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
+import org.springframework.ai.chat.messages.Message;
+import org.springframework.ai.chat.messages.UserMessage;
+import org.springframework.ai.chat.messages.AssistantMessage;
+import org.springframework.ai.chat.messages.SystemMessage;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -147,14 +152,44 @@ public class AiGenerationServiceImpl implements AiGenerationService {
         AtomicReference<Long> endTime =new AtomicReference<>(0L); // keeps end time in this thread only if new threads are present
         AtomicReference<Usage> usageRef = new AtomicReference<>();
 
+        List<Message> promptMessages = new ArrayList<>();
+        promptMessages.add(new SystemMessage(PromptUtils.CODE_GENERATION_SYSTEM_PROMPT));
+
+        List<ChatMessages> history = chatMessageRepository.findByChatSession(chatSession);
+        for (ChatMessages msg : history) {
+            if (msg.getRole() == MessageRole.USER) {
+                promptMessages.add(new UserMessage(msg.getContent()));
+            } else if (msg.getRole() == MessageRole.ASSISTANT) {
+                String content = msg.getContent();
+                if (content == null || content.equals("Assistant Message here .....")) {
+                    StringBuilder sb = new StringBuilder();
+                    if (msg.getEvents() != null) {
+                        for (ChatEvent event : msg.getEvents()) {
+                            if (event.getType() == ChatEventType.MESSAGE) {
+                                sb.append("<message>").append(event.getContent()).append("</message>\n");
+                            } else if (event.getType() == ChatEventType.FILE_EDIT) {
+                                sb.append("<file path=\"").append(event.getFilePath()).append("\">\n")
+                                  .append(event.getContent())
+                                  .append("\n</file>\n");
+                            }
+                        }
+                    }
+                    content = sb.toString();
+                }
+                if (content != null && !content.isEmpty()) {
+                    promptMessages.add(new AssistantMessage(content));
+                }
+            }
+        }
+        promptMessages.add(new UserMessage(userMessage));
+
         return chatClient.prompt()
-                .system(PromptUtils.CODE_GENERATION_SYSTEM_PROMPT) // you need to make this code_Generation_system_prompt as static if u want to put it here
+                .messages(promptMessages)
                 .advisors(advisorSpec -> {
                     advisorSpec.params(advisorParams);
                     advisorSpec.advisors(fileTreeContextAdvisor);
                 })
                 .tools(codeGenerationTools)
-                .user(userMessage)
                 .stream()  // so we send streams not just one answer
                 .chatResponse()// has many things like tools and other info but we just need the text back
                 .doOnNext(response->{ // when on next chunk of same response
@@ -235,7 +270,7 @@ public class AiGenerationServiceImpl implements AiGenerationService {
 
         ChatMessages assistantChatMessage=ChatMessages.builder()
                 .role(MessageRole.ASSISTANT)
-                .content("Assistant Message here .....")
+                .content(fullText)
                 .chatSession(chatSession)
                 .tokensUsed(completionTokens)
                 .build();
