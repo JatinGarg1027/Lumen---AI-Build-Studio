@@ -30,6 +30,9 @@ public class KubernetesDeploymentService implements DeploymentService {
     @Value("${app.preview.domain}")
     private String baseDomain;
 
+    @Value("${app.preview.scheme:http}")
+    private String previewScheme;
+
     @Value("${app.preview.proxy-port}")
     private String proxyPort;
 
@@ -42,16 +45,22 @@ public class KubernetesDeploymentService implements DeploymentService {
         // Dynamically build the domain: project-123.app.domain.com
         String domain = "project-" + projectId + "." + baseDomain;
 
-        // Use default port 80 format logic for clean URLs, or explicit ports for local testing
-        String formattedUrl = proxyPort.equals("80")
-                ? "http://" + domain
-                : "http://" + domain + ":" + proxyPort;
+        // Use default port 80/443 format logic for clean URLs, or explicit ports for local testing
+        String formattedUrl = proxyPort.equals("80") || proxyPort.equals("443")
+                ? previewScheme + "://" + domain
+                : previewScheme + "://" + domain + ":" + proxyPort;
 
         Pod existingPod = findActivePod(projectId);
 
         if (existingPod != null) {
             log.info("Found existing pod {} for project {}. Resuming...", existingPod.getMetadata().getName(), projectId);
             registerRoute(domain, existingPod);
+            try {
+                log.info("Running npm install on existing pod {} to sync new dependencies...", existingPod.getMetadata().getName());
+                execCommand(existingPod.getMetadata().getName(), "runner", "sh", "-c", "npm install");
+            } catch (Exception e) {
+                log.warn("Failed to run npm install on existing pod {}: {}", existingPod.getMetadata().getName(), e.getMessage());
+            }
             return new DeployResponse(formattedUrl);
         }
 

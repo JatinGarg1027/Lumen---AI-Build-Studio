@@ -10,6 +10,7 @@ import {
   ArrowLeft,
   Share2,
   Eye,
+  Loader2,
 } from "lucide-react";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 import { ChatPanel, ChatMessage } from "@/components/ChatPanel";
@@ -64,6 +65,8 @@ export function ProjectView() {
   const [updatedFiles, setUpdatedFiles] = useState<Map<string, string>>(new Map());
   const [isLoadingHistory, setIsLoadingHistory] = useState(true);
   const [runtimeError, setRuntimeError] = useState<RuntimeError | null>(null);
+  const [isAiFixing, setIsAiFixing] = useState(false);
+  const [autoFixAttempts, setAutoFixAttempts] = useState(0);
   const [project, setProject] = useState<ProjectResponse | null>(null);
   const [mobileTab, setMobileTab] = useState<MobileTab>("chat");
 
@@ -115,8 +118,11 @@ export function ProjectView() {
   };
 
   const handleSendMessage = useCallback(
-    (content: string) => {
+    (content: string, isAutoFix: boolean = false) => {
       if (!projectId) return;
+      if (!isAutoFix) {
+        setAutoFixAttempts(0);
+      }
       currentEditedFilesRef.current = [];
 
       const userMessage: ChatMessage = {
@@ -174,11 +180,12 @@ export function ProjectView() {
             ),
           );
           setIsStreaming(false);
+          setIsAiFixing(false);
         },
         (error) => {
           toast({
             title: "Chat error",
-            description: error.message,
+            description: error instanceof Error ? error.message : "Something went wrong",
             variant: "destructive",
           });
           setMessages((prev) =>
@@ -228,11 +235,32 @@ Stack Trace:
 ${error.stack || "No stack trace available"}
 
 Please analyze this error and fix the code to resolve it.`;
-      handleSendMessage(prompt);
+      handleSendMessage(prompt, true);
       setRuntimeError(null);
     },
     [handleSendMessage],
   );
+
+  // Auto-healing loop: automatically send GKE sandbox errors back to the AI
+  useEffect(() => {
+    if (runtimeError && !isStreaming && !isAiFixing) {
+      if (autoFixAttempts < 3) {
+        setIsAiFixing(true);
+        setAutoFixAttempts((prev) => prev + 1);
+        toast({
+          title: "🤖 Auto-Healing active",
+          description: `AI is automatically resolving the compilation/runtime error (Attempt ${autoFixAttempts + 1}/3)...`,
+        });
+        handleFixError(runtimeError);
+      } else {
+        toast({
+          title: "Auto-Healing paused",
+          description: "AI attempted to fix the error 3 times but could not resolve it. Please review the code or error logs.",
+          variant: "destructive",
+        });
+      }
+    }
+  }, [runtimeError, isStreaming, isAiFixing, autoFixAttempts, handleFixError, toast]);
 
   const handleDeleteProject = async () => {
     if (!projectId) return;
@@ -590,12 +618,34 @@ Please analyze this error and fix the code to resolve it.`;
                 </div>
                 <div className={cn("h-full absolute inset-0", viewMode !== "preview" && "hidden")}>
                   <PreviewPanel
+                    key={projectId}
                     projectId={projectId}
                     runtimeError={runtimeError}
                     onDismiss={() => setRuntimeError(null)}
                     onFix={handleFixError}
+                    isAiFixing={isAiFixing}
                   />
                 </div>
+                {isStreaming && (
+                  <div className="absolute bottom-4 right-4 z-40 animate-in fade-in slide-in-from-bottom-3 duration-300">
+                    <div className="glass-strong border border-primary/30 shadow-glow rounded-xl p-3.5 flex items-center gap-3 min-w-[240px] max-w-[320px]">
+                      <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 shrink-0">
+                        <Loader2 className="w-4 h-4 text-primary animate-spin absolute" />
+                        <Sparkles className="w-3.5 h-3.5 text-accent animate-pulse" />
+                      </div>
+                      <div className="flex flex-col min-w-0">
+                        <span className="text-xs font-semibold text-foreground">
+                          Lumen is working
+                        </span>
+                        <span className="text-[10px] text-muted-foreground truncate font-mono">
+                          {currentEditedFilesRef.current.length > 0
+                            ? `Writing ${currentEditedFilesRef.current[currentEditedFilesRef.current.length - 1].split("/").pop()}`
+                            : "Thinking & generating..."}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </ResizablePanel>
           </ResizablePanelGroup>
@@ -624,12 +674,34 @@ Please analyze this error and fix the code to resolve it.`;
               </div>
               <div className={cn("h-full absolute inset-0", viewMode !== "preview" && "hidden")}>
                 <PreviewPanel
+                  key={projectId}
                   projectId={projectId}
                   runtimeError={runtimeError}
                   onDismiss={() => setRuntimeError(null)}
                   onFix={handleFixError}
+                  isAiFixing={isAiFixing}
                 />
               </div>
+              {isStreaming && (
+                <div className="absolute bottom-4 right-4 z-40 animate-in fade-in slide-in-from-bottom-3 duration-300">
+                  <div className="glass-strong border border-primary/30 shadow-glow rounded-xl p-3.5 flex items-center gap-3 min-w-[240px] max-w-[320px]">
+                    <div className="relative flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 shrink-0">
+                      <Loader2 className="w-4 h-4 text-primary animate-spin absolute" />
+                      <Sparkles className="w-3.5 h-3.5 text-accent animate-pulse" />
+                    </div>
+                    <div className="flex flex-col min-w-0">
+                      <span className="text-xs font-semibold text-foreground">
+                        Lumen is working
+                      </span>
+                      <span className="text-[10px] text-muted-foreground truncate font-mono">
+                        {currentEditedFilesRef.current.length > 0
+                          ? `Writing ${currentEditedFilesRef.current[currentEditedFilesRef.current.length - 1].split("/").pop()}`
+                          : "Thinking & generating..."}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

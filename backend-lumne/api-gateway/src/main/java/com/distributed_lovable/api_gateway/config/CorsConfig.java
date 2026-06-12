@@ -16,11 +16,15 @@ public class CorsConfig {
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(Arrays.asList(
+        corsConfig.setAllowedOriginPatterns(Arrays.asList(
                 "http://codingshuttle.in",
                 "http://www.codingshuttle.in",
                 "http://localhost:5173",
-                "http://localhost:3000"
+                "http://localhost:3000",
+                "http://buildwithlumen.net",
+                "https://buildwithlumen.net",
+                "http://*.previews.buildwithlumen.net",
+                "https://*.previews.buildwithlumen.net"
         ));
         corsConfig.setMaxAge(3600L);
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));

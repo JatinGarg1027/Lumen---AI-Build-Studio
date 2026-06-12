@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Play, Loader2, ExternalLink, RefreshCw, Globe, MonitorSmartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { api, PREVIEW_URL_KEY } from "@/lib/api";
@@ -12,24 +12,21 @@ interface PreviewPanelProps {
   runtimeError: RuntimeError | null;
   onDismiss: () => void;
   onFix: (error: RuntimeError) => void;
+  isAiFixing?: boolean;
 }
 
-export function PreviewPanel({ projectId, runtimeError, onDismiss, onFix }: PreviewPanelProps) {
-  const [previewUrl, setPreviewUrl] = useState<string | null>(() =>
-    localStorage.getItem(PREVIEW_URL_KEY),
-  );
+export function PreviewPanel({ projectId, runtimeError, onDismiss, onFix, isAiFixing }: PreviewPanelProps) {
+  const storageKey = `${PREVIEW_URL_KEY}-${projectId}`;
+  const [previewUrl, setPreviewUrl] = useState<string | null>(() => localStorage.getItem(storageKey));
   const [isDeploying, setIsDeploying] = useState(false);
   const { toast } = useToast();
-
-  useEffect(() => {
-    if (previewUrl) localStorage.setItem(PREVIEW_URL_KEY, previewUrl);
-  }, [previewUrl]);
 
   const handleDeploy = async () => {
     setIsDeploying(true);
     try {
       const response = await api.deploy(projectId);
       setPreviewUrl(response.previewUrl);
+      localStorage.setItem(storageKey, response.previewUrl);
       toast({ title: "Preview ready", description: "Your sandbox is live." });
     } catch (error) {
       toast({
@@ -41,6 +38,14 @@ export function PreviewPanel({ projectId, runtimeError, onDismiss, onFix }: Prev
       setIsDeploying(false);
     }
   };
+
+  const prevIsAiFixing = useRef(isAiFixing);
+  useEffect(() => {
+    if (prevIsAiFixing.current && !isAiFixing) {
+      handleDeploy();
+    }
+    prevIsAiFixing.current = isAiFixing;
+  }, [isAiFixing]);
 
   const handleRefresh = () => {
     const iframe = document.querySelector("iframe");
@@ -119,6 +124,23 @@ export function PreviewPanel({ projectId, runtimeError, onDismiss, onFix }: Prev
           <DeployingState />
         ) : (
           <EmptyPreviewState onDeploy={handleDeploy} />
+        )}
+
+        {isAiFixing && (
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center text-center p-8 z-50 animate-in fade-in duration-200">
+            <div className="relative mb-5">
+              <div className="absolute -inset-4 rounded-full bg-primary/20 blur-2xl opacity-80 animate-pulse" />
+              <div className="relative w-16 h-16 rounded-2xl glass border border-border/60 flex items-center justify-center">
+                <Loader2 className="w-8 h-8 text-primary animate-spin" />
+              </div>
+            </div>
+            <h3 className="font-display text-lg font-semibold mb-1">
+              ✨ AI Auto-Healing Active
+            </h3>
+            <p className="text-sm text-muted-foreground max-w-xs">
+              An error was detected in your application. The AI is automatically correcting the code and redeploying.
+            </p>
+          </div>
         )}
       </div>
 

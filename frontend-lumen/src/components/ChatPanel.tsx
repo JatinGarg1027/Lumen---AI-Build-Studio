@@ -186,7 +186,7 @@ export function ChatPanel({
           </Button>
         </form>
 
-        <div className="flex items-center justify-between mt-2 px-1">
+        <div className="flex items-center mt-2 px-1">
           <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
             {readOnly ? (
               <>
@@ -199,12 +199,6 @@ export function ChatPanel({
               </>
             )}
           </div>
-          {isStreaming && (
-            <span className="text-[11px] text-muted-foreground flex items-center gap-1.5 font-medium">
-              <span className="streaming-cursor" />
-              Thinking…
-            </span>
-          )}
         </div>
       </div>
     </div>
