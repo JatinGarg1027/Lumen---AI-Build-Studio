@@ -1,4 +1,4 @@
-# ✨ Lumen — AI-Powered Distributed Build Studio & IDE
+#  Lumen — AI-Powered Distributed Build Studio & IDE
 
 Lumen is a state-of-the-art, AI-driven development studio (a distributed replica of [Lovable.dev](https://lovable.dev)). It empowers developers to build, iterate, preview, and deploy React web applications entirely through conversational prompts. 
 
@@ -6,14 +6,14 @@ This repository houses the entire distributed system, comprising a high-fidelity
 
 ---
 
-## 🎨 Visual Walkthrough
+##  Visual Walkthrough
 
-### 🚀 1. The Build Studio Dashboard
+###  1. The Build Studio Dashboard
 The landing page greets you with an elegant aurora background that flows into the **Lumen Workspace Dashboard**. From here, you can view your active projects, create a new project scaffolding, track billing upgrades, or search your existing workspace library.
 
 ![Lumen Dashboard](assets/dashboard.png)
 
-### 💻 2. The Interactive IDE & AI Chat Workspace
+###  2. The Interactive IDE & AI Chat Workspace
 Selecting a project loads the **AI Build Workspace**. It features a side-by-side interactive IDE layout containing:
 - **Left Panel:** Streaming AI Chat Assistant where you describe changes or new elements.
 - **Center Panel:** Code Editor powered by CodeMirror, displaying the hot-reloaded active files.
@@ -22,7 +22,7 @@ Selecting a project loads the **AI Build Workspace**. It features a side-by-side
 
 ![Lumen Workspace](assets/workspace.png)
 
-### 🔒 3. Authentication & Onboarding
+###  3. Authentication & Onboarding
 Lumen comes equipped with a modern, glassmorphic login and signup experience utilizing floating glass panels, customized input validations, and animated layout transitions.
 
 | Login Studio | Account Setup |
@@ -31,7 +31,7 @@ Lumen comes equipped with a modern, glassmorphic login and signup experience uti
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 Lumen uses a microservices-based, event-driven architecture designed to scale seamlessly. 
 
@@ -79,7 +79,7 @@ graph TD
 
 ---
 
-## ⚙️ Tech Stack & Dependencies
+##  Tech Stack & Dependencies
 
 ### Frontend
 * **Core Framework:** React 18, TypeScript, Vite, React Router DOM v6
@@ -104,7 +104,7 @@ graph TD
 
 ---
 
-## 🚀 Running the Project Locally
+##  Running the Project Locally
 
 ### Prerequisites
 1. **Node.js** (v18+) & **npm / Bun**
@@ -158,7 +158,7 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser.
 
 ---
 
-## ☸️ Kubernetes Deployment
+##  Kubernetes Deployment
 
 Lumen components are containerized using Google's **Jib plugin** and deployed to Kubernetes.
 All service manifests (e.g., [frontend.yaml](backend-lumne/k8s/services/frontend.yaml)) are located under the `backend-lumne/k8s/` folder.
