@@ -76,6 +76,34 @@ def main():
             print(f"Error: Extracted directory '{TEMPLATE_DIR_NAME}' not found.")
             sys.exit(1)
 
+        # 3b. Modify package.json to add common dependencies
+        package_json_path = os.path.join(extracted_root, "package.json")
+        if os.path.exists(package_json_path):
+            print("Modifying package.json to include lucide-react and other common dependencies...")
+            import json
+            try:
+                with open(package_json_path, 'r') as f:
+                    data = json.load(f)
+                
+                # Add dependencies
+                if "dependencies" not in data:
+                    data["dependencies"] = {}
+                
+                # Inject common AI packages
+                data["dependencies"]["lucide-react"] = "^0.468.0"
+                data["dependencies"]["recharts"] = "^2.15.0"
+                data["dependencies"]["framer-motion"] = "^11.15.0"
+                data["dependencies"]["clsx"] = "^2.1.1"
+                data["dependencies"]["tailwind-merge"] = "^2.5.5"
+                data["dependencies"]["canvas-confetti"] = "^1.9.3"
+                
+                # Write back
+                with open(package_json_path, 'w') as f:
+                    json.dump(data, f, indent=2)
+                print("package.json successfully updated.")
+            except Exception as e:
+                print(f"Warning: Failed to modify package.json: {e}")
+
         # 4. Upload files to MinIO
         print("Uploading files to MinIO...")
         upload_count = 0

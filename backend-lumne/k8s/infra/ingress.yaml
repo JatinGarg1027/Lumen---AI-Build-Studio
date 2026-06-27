@@ -3,11 +3,13 @@ kind: Ingress
 metadata:
   name: lovable-main-ingress
   namespace: lovable-core
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
 
   rules:
-  - host: "*.previews.buildwithlumen.net"
+  - host: "*.buildwithlumen.net"
     http:
       paths:
       - path: /
